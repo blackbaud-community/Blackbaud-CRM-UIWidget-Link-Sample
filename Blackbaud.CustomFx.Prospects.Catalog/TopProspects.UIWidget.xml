@@ -1,0 +1,49 @@
+﻿<UIWidgetSpec
+  xmlns="bb_appfx_uiwidget"
+  xmlns:c="bb_appfx_commontypes"
+  ID="0d2b92b9-432f-4668-83b8-ad569f9d8a9d"
+  Name="Top Prospects UI Widget"
+  Description="Displays a data list-driven view of top prospects by total gifts."
+  Author="Technical Training"
+  Title="Prospect Management\Fundraisers"
+  >
+
+  <c:InstalledProductList>
+    <c:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046" />
+    <c:InstalledProduct ID="a84df439-5a75-4a3b-b3f5-b47035ddd3ff" />
+    <c:InstalledProduct ID="AB25CD89-7288-4605-B0EA-48961960EC06" />
+  </c:InstalledProductList>
+
+  <DataSource>
+    <DataList ID="4e2b6ed4-1ff2-47b2-b63e-7e4e96b2827b">
+      <RenderStyle>
+        <List>
+          <LinkActions>
+            <LinkAction LinkFieldID="NAME">
+              <!-- Constituent.Page.xml -->
+              <ShowPage PageID="88159265-2B7E-4c7b-82A2-119D01ECD40F" TabID="966a756b-4b38-47bc-8c6a-de82035cb0a7">
+                <ActionContext>
+                  <DataListField>ID</DataListField>
+                </ActionContext>
+              </ShowPage>
+            </LinkAction>
+          </LinkActions>
+        </List>
+      </RenderStyle>
+      <FilterOptions>
+        <ReloadTriggers>
+          <TriggerFields>
+            <TriggerField FieldID="NAME"/>
+            <TriggerField FieldID="TOTALGIFTS"/>
+          </TriggerFields>
+        </ReloadTriggers>
+      </FilterOptions>
+    </DataList>
+  </DataSource>
+
+  <MoreLink>
+    <!-- Prospect.Page.xml -->
+    <ShowPage PageID="1a01610e-4937-4d70-b705-d1947efbe3c7" />
+  </MoreLink>
+
+</UIWidgetSpec>

@@ -1,0 +1,45 @@
+﻿<DataListSpec
+  xmlns="bb_appfx_datalist"
+  xmlns:c="bb_appfx_commontypes"
+  ID="4e2b6ed4-1ff2-47b2-b63e-7e4e96b2827b"
+  Name="Top Prospects Data List"
+  Description="A data list showing top prospect records with respect to total donations."
+  Author="Technical Training"
+  c:SecurityUIFolder="Prospect Management\Fundraisers"
+  >
+
+  <c:InstalledProductList>
+    <c:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046" />
+    <c:InstalledProduct ID="a84df439-5a75-4a3b-b3f5-b47035ddd3ff" />
+    <c:InstalledProduct ID="AB25CD89-7288-4605-B0EA-48961960EC06" />
+  </c:InstalledProductList>
+
+  <SPDataList SPName="USR_USP_DATALIST_TOPPROSPECTS">
+    <c:CreateProcedureSQL>
+      <![CDATA[
+create procedure dbo.USR_USP_DATALIST_TOPPROSPECTS
+as
+  set nocount on;
+  
+  select
+    PROSPECT.ID,
+    NF.NAME,
+    sum(FINANCIALTRANSACTION.TRANSACTIONAMOUNT) as TOTALGIFTS
+  from dbo.PROSPECT
+    inner join dbo.FINANCIALTRANSACTION on PROSPECT.ID = FINANCIALTRANSACTION.CONSTITUENTID
+    outer apply UFN_CONSTITUENT_DISPLAYNAME(PROSPECT.ID) NF
+  group by PROSPECT.ID, NF.NAME
+  order by sum(FINANCIALTRANSACTION.TRANSACTIONAMOUNT) desc;
+      ]]>
+    </c:CreateProcedureSQL>
+  </SPDataList>
+
+  <Output>
+    <OutputFields>
+      <OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+      <OutputField FieldID="NAME" Caption="Name" DataType="String" />
+      <OutputField FieldID="TOTALGIFTS" Caption="Total gifts" DataType="Money" />
+    </OutputFields>
+  </Output>
+
+</DataListSpec>

@@ -1,0 +1,35 @@
+<PackageSpec
+  xmlns="bb_appfx_package"
+  xmlns:c="bb_appfx_commontypes"
+  ID="325ac8d7-3da4-41b3-95fe-a95a1bff0433"
+  Name="Top Prospects Package"
+  Description="A package defining specs related to top prospect views."
+  Author="Technical Training"
+  >
+
+  <c:DependencyList>
+    <c:Dependency CatalogAssembly="Blackbaud.CustomFx.Prospects.Catalog.dll" CatalogItem="Blackbaud.CustomFx.Prospects.Catalog.ProspectsTop.DataList.xml" />
+    <c:Dependency CatalogAssembly="Blackbaud.CustomFx.Prospects.Catalog.dll" CatalogItem="Blackbaud.CustomFx.Prospects.Catalog.Prospects.UIWidget.xml" />
+  </c:DependencyList>
+
+  <AlterExistingPages xmlns="bb_appfx_pagedefinition">
+    <AlterPages>
+      <!-- Fundraiser.Page.xml -->
+      <AlterPage PageID="baee8762-6727-43a7-9645-5dd776f6289a">
+        <AlterTabs>
+          <!-- Prospects and Plans -->
+          <AlterTab TabID="eb5698fa-e215-4408-a9f3-d21a530b82cc">
+            <AlterSections>
+              <AddSection Sequence="99">
+                <Section ID="BDACAB07-1C6A-4A22-8A3F-FA155FFF65D9" Caption="Top prospects">
+                  <UIWidget ID="0d2b92b9-432f-4668-83b8-ad569f9d8a9d" />
+                </Section>
+              </AddSection>
+            </AlterSections>
+          </AlterTab>
+        </AlterTabs>
+      </AlterPage>
+    </AlterPages>
+  </AlterExistingPages>
+
+</PackageSpec>
